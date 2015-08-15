@@ -1,8 +1,11 @@
 LD=clang
 CXX=clang++
 
-CXXFLAGS += -Wall -pedantic -Werror -std=c++11 -stdlib=libc++ -Isrc/
-LDFLAGS += -lc++ -lcurl
+CXXFLAGS += -Wall -pedantic -Werror -std=c++11 -stdlib=libc++
+LDFLAGS += -lc++
+
+CXXFLAGS += -Isrc/
+LDFLAGS += -lcurl
 
 SRC=src/hugopeixoto/requests.cc
 LIB=libhugopeixoto-requests.a
