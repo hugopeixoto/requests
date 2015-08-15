@@ -2,20 +2,25 @@ requests
 ========
 
 Wrapper around libcurl to make http requests a bit easier.
+There are `get`, `post` and `put` functions. If you need something else, create a `Request` object and use `call`.
 
 Example usage:
 
-    #include "requests.h"
+```c++
+#include "requests.h"
+#include <iostream>
 
-    int main() {
-      auto response = requests::get(
-        "https://api.github.com/",
-        {{"User-Agent", "librequests/0.1"}});
+int main() {
+  auto response = requests::get(
+    "https://api.github.com/",
+    {{"User-Agent", "librequests/0.1"}});
 
-      std::cout << response.body << std::endl;
+  std::cout << response.status_code << std::endl;
+  std::cout << response.body << std::endl;
 
-      return 0;
-    }
+  return 0;
+}
+```
 
 TODO
 ----
