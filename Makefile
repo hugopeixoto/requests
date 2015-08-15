@@ -1,15 +1,20 @@
 LD=clang
 CXX=clang++
-CXXFLAGS += -Wall -pedantic -Werror -std=c++11 -stdlib=libc++
-LDFLAGS += -lcurl -lc++
 
-all: test librequests.a
+CXXFLAGS += -Wall -pedantic -Werror -std=c++11 -stdlib=libc++ -Isrc/
+LDFLAGS += -lc++ -lcurl
 
-librequests.a: requests.o
+SRC=src/hugopeixoto/requests.cc
+LIB=libhugopeixoto-requests.a
+
+OBJ=$(SRC:.cc=.o)
+all: test $(LIB)
+
+$(LIB): $(OBJ)
 	$(AR) rcs $@ $^
 
-test: main.o librequests.a
+test: main.o $(LIB)
 	$(LD) -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm -rf *.o test librequests.a
+	rm -rf test main.o $(OBJ) $(LIB)
