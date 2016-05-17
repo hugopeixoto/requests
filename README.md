@@ -29,6 +29,5 @@ int main() {
 TODO
 ----
 
-- Parse response headers
 - Specify request timeout
 - Handle errors
