@@ -7,15 +7,20 @@ There are `get`, `post` and `put` functions. If you need something else, create 
 Example usage:
 
 ```c++
-#include "requests.h"
+#include "hugopeixoto/requests.h"
 #include <iostream>
 
 int main() {
-  auto response = requests::get("https://api.github.com/",
-                                {{"User-Agent", "librequests/0.1"}});
+  auto response = requests::get(
+      "https://api.github.com/",
+      {{"User-Agent", "librequests/0.1"}});
 
   std::cout << response.status_code << std::endl;
   std::cout << response.body << std::endl;
+
+  for (auto kv : response.headers) {
+    std::cout << << kv.first << ": " << kv.second << std::endl;
+  }
 
   return 0;
 }
