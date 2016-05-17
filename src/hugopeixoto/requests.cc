@@ -9,7 +9,14 @@ static int body_writer(char *data, size_t size, size_t nmemb,
 
 static int header_writer(char *data, size_t size, size_t nmemb,
                          requests::Response *response) {
-  // TODO: implement this. curl doesn't make this easy.
+  std::string header(data, size*nmemb);
+
+  auto idx = header.find(':');
+  if (idx != std::string::npos && idx > 0 && idx + 4 < header.size()) {
+    response->headers.insert(std::make_pair(
+      header.substr(0, idx),
+      header.substr(idx+2, header.size()-idx-4)));
+  }
 
   return size * nmemb;
 }
