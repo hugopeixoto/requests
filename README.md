@@ -19,7 +19,7 @@ int main() {
   std::cout << response.body << std::endl;
 
   for (auto kv : response.headers) {
-    std::cout << << kv.first << ": " << kv.second << std::endl;
+    std::cout << kv.first << ": " << kv.second << std::endl;
   }
 
   return 0;
